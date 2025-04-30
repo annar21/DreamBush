@@ -2,9 +2,12 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { useRoute } from '@react-navigation/native'
+import UpgradePlanModal from './UpgradePlanModal'
 
 const Header = () => {
   const route = useRoute();
+  const [visible, setVisible] = React.useState<boolean>(false);
+
   return (
     <View style={{backgroundColor: '#fff', paddingBottom: 10, paddingHorizontal: 15, paddingTop: 0}}>
 
@@ -22,7 +25,7 @@ const Header = () => {
             </View>
 
             <View style={{backgroundColor: '#E4DFFD', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20}}>
-              <TouchableOpacity style={{width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={() => {}}>
+              <TouchableOpacity style={{width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={() => setVisible(true)}>
                 <Text style={{textAlign: 'center', color: '#6B5FF0', fontWeight: 600}}>UPGRADE</Text>
               </TouchableOpacity>
             </View>
@@ -55,6 +58,11 @@ const Header = () => {
           </View>
         </View>
       )}
+
+      <UpgradePlanModal 
+        visible={visible} 
+        setVisible={setVisible} 
+      />
     </View>
   );
 }
